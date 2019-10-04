@@ -29,7 +29,7 @@ public class ArabicNumbersTest {
     }
 
     @Test
-    public void test_for_2_symbol() {
+    public void test_for_2_symbols() {
         List<String> romanNumbers = Arrays.asList("II", "IV", "VI", "IX", "XI", "XX", "XL", "LX", "XC", "CD", "CM", "MC");
 
         List<Integer> arabics = romanNumbers.stream()
@@ -52,7 +52,7 @@ public class ArabicNumbersTest {
     }
 
     @Test
-    public void test_for_3_symbol() {
+    public void test_for_3_symbols() {
         List<String> romanNumbers = Arrays.asList("III", "VII", "XII", "XXX", "XLI", "LXV", "XCI", "CDL", "CMV", "MCL");
 
         List<Integer> arabics = romanNumbers.stream()
@@ -70,6 +70,24 @@ public class ArabicNumbersTest {
         assertEquals(arabics.get(8), new Integer(905));
         assertEquals(arabics.get(9), new Integer(1150));
 
+    }
+
+    @Test
+    public void test_for_4_symbols() {
+        List<String> romanNumbers = Arrays.asList("VIII", "XIII", "XXXI", "XLII", "LXVI", "LXXX", "DCCC", "MXXI");
+
+        List<Integer> arabics = romanNumbers.stream()
+                .map(roman -> arabicNumbers.convertToArabic(roman))
+                .collect(Collectors.toList());
+
+        assertEquals(arabics.get(0), new Integer(8));
+        assertEquals(arabics.get(1), new Integer(13));
+        assertEquals(arabics.get(2), new Integer(31));
+        assertEquals(arabics.get(3), new Integer(42));
+        assertEquals(arabics.get(4), new Integer(66));
+        assertEquals(arabics.get(5), new Integer(80));
+        assertEquals(arabics.get(6), new Integer(800));
+        assertEquals(arabics.get(7), new Integer(1021));
     }
 
 }

@@ -37,10 +37,9 @@ public class ArabicNumbers {
                 case 3:
                     result = getIntegerOf3(result, subRomanChar);
                     break;
-//                default:
-//                    result = result + getIntegerOf4(subRomanChar)[0];
-//                    read = read + getIntegerOf4(subRomanChar)[1];
-//                    break;
+                default:
+                    result = getIntegerOf4(result, subRomanChar);
+                    break;
             }
 
         }
@@ -89,37 +88,28 @@ public class ArabicNumbers {
         return result;
     }
 
-//    private int[] getIntegerOf4(char[] romanChar) {
-//
-//        int result[] = new int[2];
-//
-//        Integer x = (Integer) translateSymbols.get(romanChar[0]);
-//
-//        Integer y = (Integer) translateSymbols.get(romanChar[1]);
-//
-//        Integer z = (Integer) translateSymbols.get(romanChar[2]);
-//
-//        Integer w = (Integer) translateSymbols.get(romanChar[3]);
-//
-//        if(x.compareTo(y) == 0 && y.compareTo(z) == 0) {
-//            result[0] = x + y + z;
-//            result[1] = 3;
-//        }else if (x.compareTo(y) >= 0 && y.compareTo(z) >= 0 && z.compareTo(w) >= 0) {
-//            result[0] = x+y+z+w;
-//            result[1] = 4;
-//        }else if(x.compareTo(y) >= 0 && y.compareTo(z) < 0) {
-//            result[0] = x;
-//            result[1] = 1;
-//        }else if(x.compareTo(y) >= 0){
-//            result[0] = x+y;
-//            result[1] = 2;
-//        }else {
-//            result[0] = y-x;
-//            result[1] = 2;
-//        }
-//        return result;
-//    }
-//
+    private Result getIntegerOf4(Result result, char[] romanChar) {
+
+        Integer x = (Integer) translateSymbols.get(romanChar[0]);
+
+        Integer y = (Integer) translateSymbols.get(romanChar[1]);
+
+        Integer z = (Integer) translateSymbols.get(romanChar[2]);
+
+        Integer w = (Integer) translateSymbols.get(romanChar[3]);
+
+        if(x.compareTo(y) == 0 && y.compareTo(z) == 0) {
+            result.incSum(x + y + z);
+            result.incSymbolsRead(3);
+        }else if (x.compareTo(y) >= 0 && y.compareTo(z) == 0 && z.compareTo(w) == 0) {
+            result.incSum(x+y+z+w);
+            result.incSymbolsRead(4);
+        }else {
+            result = getIntegerOf3(result, romanChar);
+        }
+        return result;
+    }
+
     public class Result {
 
         private int sum;
