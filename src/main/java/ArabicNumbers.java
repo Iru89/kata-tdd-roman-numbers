@@ -34,10 +34,9 @@ public class ArabicNumbers {
                 case 2:
                     result = getIntegerOf2(result, subRomanChar);
                     break;
-//                case 3:
-//                    result = result + getIntegerOf3(subRomanChar)[0];
-//                    read = read + getIntegerOf3(subRomanChar)[1];
-//                    break;
+                case 3:
+                    result = getIntegerOf3(result, subRomanChar);
+                    break;
 //                default:
 //                    result = result + getIntegerOf4(subRomanChar)[0];
 //                    read = read + getIntegerOf4(subRomanChar)[1];
@@ -46,7 +45,7 @@ public class ArabicNumbers {
 
         }
 
-        return result.sum;
+        return result.getSum();
     }
 
     private Result getIntegerOf1Symbol(Result result, char[] subRomanChar) {
@@ -63,35 +62,33 @@ public class ArabicNumbers {
         Integer y = (Integer) translateSymbols.get(romanChar[1]);
 
         if (x.compareTo(y) >= 0) {
-            result.incSum(x+y);
+            result.incSum(x + y);
         }else {
-            result.incSum(y-x);
+            result.incSum(y - x);
         }
         result.incSymbolsRead(2);
         return result;
     }
 
-//    private int[] getIntegerOf3(char[] romanChar) {
-//
-//        int result[] = new int[2];
-//
-//        Integer x = (Integer) translateSymbols.get(romanChar[0]);
-//
-//        Integer y = (Integer) translateSymbols.get(romanChar[1]);
-//
-//        Integer z = (Integer) translateSymbols.get(romanChar[2]);
-//
-//
-//        if (x.compareTo(y) >= 0 && y.compareTo(z) >= 0) {
-//            result[0] = x+y+z;
-//            result[1] = 3;
-//        }else {
-//            result[0] = x;
-//            result[1] = 1;
-//        }
-//        return result;
-//    }
-//
+    private Result getIntegerOf3(Result result, char[] romanChar) {
+
+        Integer x = (Integer) translateSymbols.get(romanChar[0]);
+
+        Integer y = (Integer) translateSymbols.get(romanChar[1]);
+
+        Integer z = (Integer) translateSymbols.get(romanChar[2]);
+
+        if (x.compareTo(y) >= 0) {
+            result.incSum(x + y + z);
+            result.incSymbolsRead(3);
+        }else if (x.compareTo(y) < 0) {
+            result.incSum(y - x);
+            result.incSymbolsRead(2);
+        }
+
+        return result;
+    }
+
 //    private int[] getIntegerOf4(char[] romanChar) {
 //
 //        int result[] = new int[2];

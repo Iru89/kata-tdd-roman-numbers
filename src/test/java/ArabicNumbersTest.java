@@ -51,4 +51,25 @@ public class ArabicNumbersTest {
 
     }
 
+    @Test
+    public void test_for_3_symbol() {
+        List<String> romanNumbers = Arrays.asList("III", "VII", "XII", "XXX", "XLI", "LXV", "XCI", "CDL", "CMV", "MCL");
+
+        List<Integer> arabics = romanNumbers.stream()
+                .map(roman -> arabicNumbers.convertToArabic(roman))
+                .collect(Collectors.toList());
+
+        assertEquals(arabics.get(0), new Integer(3));
+        assertEquals(arabics.get(1), new Integer(7));
+        assertEquals(arabics.get(2), new Integer(12));
+        assertEquals(arabics.get(3), new Integer(30));
+        assertEquals(arabics.get(4), new Integer(41));
+        assertEquals(arabics.get(5), new Integer(65));
+        assertEquals(arabics.get(6), new Integer(91));
+        assertEquals(arabics.get(7), new Integer(450));
+        assertEquals(arabics.get(8), new Integer(905));
+        assertEquals(arabics.get(9), new Integer(1150));
+
+    }
+
 }
