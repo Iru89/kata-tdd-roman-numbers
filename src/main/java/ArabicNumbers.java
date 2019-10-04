@@ -50,6 +50,7 @@ public class ArabicNumbers {
     private Result getIntegerOf1Symbol(Result result, char[] subRomanChar) {
         result.incSum((int) translateSymbols.get(subRomanChar[0]));
         result.incSymbolsRead(1);
+
         return result;
     }
 
@@ -65,6 +66,7 @@ public class ArabicNumbers {
         }else {
             result.incSum(y - x);
         }
+
         result.incSymbolsRead(2);
         return result;
     }
@@ -77,8 +79,11 @@ public class ArabicNumbers {
 
         Integer z = (Integer) translateSymbols.get(romanChar[2]);
 
-        if (x.compareTo(y) >= 0) {
+        if (x.compareTo(y) >= 0 && y.compareTo(z) >= 0) {
             result.incSum(x + y + z);
+            result.incSymbolsRead(3);
+        }else if (x.compareTo(y) >= 0 && y.compareTo(z) < 0) {
+            result.incSum(x + z -y);
             result.incSymbolsRead(3);
         }else if (x.compareTo(y) < 0) {
             result.incSum(y - x);
@@ -107,6 +112,7 @@ public class ArabicNumbers {
         }else {
             result = getIntegerOf3(result, romanChar);
         }
+
         return result;
     }
 

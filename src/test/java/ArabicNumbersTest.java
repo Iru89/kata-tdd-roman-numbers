@@ -53,7 +53,7 @@ public class ArabicNumbersTest {
 
     @Test
     public void test_for_3_symbols() {
-        List<String> romanNumbers = Arrays.asList("III", "VII", "XII", "XXX", "XLI", "LXV", "XCI", "CDL", "CMV", "MCL");
+        List<String> romanNumbers = Arrays.asList("III", "VII", "XII", "XXX", "XLI", "LXV", "XCI", "CDL", "CMV", "MCL", "MCM");
 
         List<Integer> arabics = romanNumbers.stream()
                 .map(roman -> arabicNumbers.convertToArabic(roman))
@@ -69,6 +69,7 @@ public class ArabicNumbersTest {
         assertEquals(arabics.get(7), new Integer(450));
         assertEquals(arabics.get(8), new Integer(905));
         assertEquals(arabics.get(9), new Integer(1150));
+        assertEquals(arabics.get(10), new Integer(1900));
 
     }
 
@@ -88,6 +89,25 @@ public class ArabicNumbersTest {
         assertEquals(arabics.get(5), new Integer(80));
         assertEquals(arabics.get(6), new Integer(800));
         assertEquals(arabics.get(7), new Integer(1021));
+
+    }
+
+    @Test
+    public void test_of_more_than_4_symbols() {
+        List<String> romanNumbers = Arrays.asList("CCCXL", "MXXIX", "MCMXLIX", "MCMLXXXVII", "MMDCCCLXXIV", "MMMCMXCIX");
+
+        List<Integer> arabics = romanNumbers.stream()
+                .map(roman -> arabicNumbers.convertToArabic(roman))
+                .collect(Collectors.toList());
+
+        assertEquals(arabics.get(0), new Integer(340));
+        assertEquals(arabics.get(1), new Integer(1029));
+        assertEquals(arabics.get(2), new Integer(1949));
+        assertEquals(arabics.get(3), new Integer(1987));
+        assertEquals(arabics.get(4), new Integer(2874));
+        assertEquals(arabics.get(5), new Integer(3999));
+
+
     }
 
 }
