@@ -27,4 +27,28 @@ public class ArabicNumbersTest {
         assertEquals(arabics.get(6), new Integer(1000));
 
     }
+
+    @Test
+    public void test_for_2_symbol() {
+        List<String> romanNumbers = Arrays.asList("II", "IV", "VI", "IX", "XI", "XX", "XL", "LX", "XC", "CD", "CM", "MC");
+
+        List<Integer> arabics = romanNumbers.stream()
+                .map(roman -> arabicNumbers.convertToArabic(roman))
+                .collect(Collectors.toList());
+
+        assertEquals(arabics.get(0), new Integer(2));
+        assertEquals(arabics.get(1), new Integer(4));
+        assertEquals(arabics.get(2), new Integer(6));
+        assertEquals(arabics.get(3), new Integer(9));
+        assertEquals(arabics.get(4), new Integer(11));
+        assertEquals(arabics.get(5), new Integer(20));
+        assertEquals(arabics.get(6), new Integer(40));
+        assertEquals(arabics.get(7), new Integer(60));
+        assertEquals(arabics.get(8), new Integer(90));
+        assertEquals(arabics.get(9), new Integer(400));
+        assertEquals(arabics.get(10), new Integer(900));
+        assertEquals(arabics.get(11), new Integer(1100));
+
+    }
+
 }
