@@ -1,5 +1,9 @@
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.Assert.*;
 
 public class ArabicNumbersTest {
@@ -7,107 +11,20 @@ public class ArabicNumbersTest {
     private ArabicNumbers arabicNumbers = new ArabicNumbers();
 
     @Test
-    public void passIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("I");
+    public void test_for_1_symbol() {
+        List<String> romanNumbers = Arrays.asList("I", "V", "X", "L", "C", "D", "M");
 
-        assertEquals(arabic, 1);
-    }
+        List<Integer> arabics = romanNumbers.stream()
+                .map(roman -> arabicNumbers.convertToArabic(roman))
+                .collect(Collectors.toList());
 
-    @Test
-    public void passIIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("II");
+        assertEquals(arabics.get(0), new Integer(1));
+        assertEquals(arabics.get(1), new Integer(5));
+        assertEquals(arabics.get(2), new Integer(10));
+        assertEquals(arabics.get(3), new Integer(50));
+        assertEquals(arabics.get(4), new Integer(100));
+        assertEquals(arabics.get(5), new Integer(500));
+        assertEquals(arabics.get(6), new Integer(1000));
 
-        assertEquals(arabic, 2);
-    }
-
-    @Test
-    public void passIIIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("III");
-
-        assertEquals(arabic, 3);
-    }
-
-    @Test
-    public void passIVToArabic() {
-        int arabic = arabicNumbers.convertToArabic("IV");
-
-        assertEquals(arabic, 4);
-    }
-
-    @Test
-    public void passVToArabic() {
-        int arabic = arabicNumbers.convertToArabic("V");
-
-        assertEquals(arabic, 5);
-    }
-
-    @Test
-    public void passVIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("VI");
-
-        assertEquals(arabic, 6);
-    }
-
-    @Test
-    public void passVIIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("VII");
-
-        assertEquals(arabic, 7);
-    }
-
-    @Test
-    public void passVIIIToArabic() {
-        int arabic = arabicNumbers.convertToArabic("VIII");
-
-        assertEquals(arabic, 8);
-    }
-
-    @Test
-    public void passIXToArabic() {
-        int arabic = arabicNumbers.convertToArabic("IX");
-
-        assertEquals(arabic, 9);
-    }
-
-    @Test
-    public void passXToArabic() {
-        int arabic = arabicNumbers.convertToArabic("X");
-
-        assertEquals(arabic, 10);
-    }
-
-    @Test
-    public void passRomanToArabic() {
-        int arabic = arabicNumbers.convertToArabic("XXXIV");
-
-        assertEquals(arabic, 34);
-    }
-
-    @Test
-    public void passRomanToArabic2() {
-        int arabic = arabicNumbers.convertToArabic("MMMCMXLIX");
-
-        assertEquals(arabic, 3949);
-    }
-
-    @Test
-    public void passRomanToArabic3() {
-        int arabic = arabicNumbers.convertToArabic("MMDCCCLXXIV");
-
-        assertEquals(arabic, 2874);
-    }
-
-    @Test
-    public void passRomanToArabic4() {
-        int arabic = arabicNumbers.convertToArabic("MCDXCIV");
-
-        assertEquals(arabic, 1494);
-    }
-
-    @Test
-    public void passRomanToArabic5() {
-        int arabic = arabicNumbers.convertToArabic("MCMXLIX");
-
-        assertEquals(arabic, 1949);
     }
 }
