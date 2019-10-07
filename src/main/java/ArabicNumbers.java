@@ -28,10 +28,10 @@ public class ArabicNumbers {
 
             switch (subRomanChar.length) {
                 case 1:
-                    result = getIntegerOf1Symbol(result, subRomanChar);
+                    result = addValueOfSymbol(result, subRomanChar);
                     break;
                 default:
-                    result = getIntegerOf2(result, subRomanChar);
+                    result = addOrSubtractValueOfSymbol(result, subRomanChar);
                     break;
             }
 
@@ -40,14 +40,15 @@ public class ArabicNumbers {
         return result;
     }
 
-    private int getIntegerOf1Symbol(int result, char[] subRomanChar) {
+    private int addValueOfSymbol(int result, char[] subRomanChar) {
+
         result = result + (int) translateSymbols.get(subRomanChar[0]);
 
         return result;
     }
 
 
-    private int getIntegerOf2(int result, char[] romanChar) {
+    private int addOrSubtractValueOfSymbol(int result, char[] romanChar) {
 
         Integer x = (Integer) translateSymbols.get(romanChar[0]);
 
@@ -61,5 +62,27 @@ public class ArabicNumbers {
 
         return result;
     }
+
+
+//    public int convertToArabicReduce(String romanNumber) {
+//
+//        String[] reverseArray = Arrays.stream(romanNumber.split(""))
+//                .reduce((acc, idd) -> idd + acc)
+//                .get()
+//                .split("");
+//        AtomicReference<Integer> oldValue = new AtomicReference<>(0);
+//
+//        // este reduce te da la logica que tenias dentro del for.
+//        return Arrays.stream(reverseArray)
+//             .map(number -> translateSymbols.get(number.charAt(0)))
+//             .reduce(0, (acc, idd) -> {
+//                 if (idd >= oldValue.get()) {
+//                     oldValue.set(idd);
+//                     return acc + idd;
+//                 }
+//                 return acc - idd;
+//             });
+//
+//    }
 
 }
